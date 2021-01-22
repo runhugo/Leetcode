@@ -30,8 +30,35 @@ def mySqrt(x:int):
     return right
 
 # 还可以用牛顿法
-# todo
+# 牛顿法的介绍：https://www.matongxue.com/madocs/205/
+# 
+# 基本思路：求x的平方根，其实就是求函数f(x)=x^2-a等于0时的正解
+# 通过牛顿法，可算得迭代式：x(n+1) = (x(n)^2 + a) / (2*x(n))
+# 迭代停止条件：
+# 我的思路（可行吗？代码上可行）：每次算得x(n+1)，带回f(x)中，当收敛于0时，则可以视为是x的平方根 (我的思路。。这个可行吗？)
+# 网站思路：当两次的迭代点足够近时，则认为收敛，找到解
+def mySqrt_newton(x):
+    if x < 0:
+        return -1
+    
+    if x == 0:
+        return 0
+    
+    x1 = x
+    while True:
+        x0 = x1
+        x1 = 0.5 * (pow(x1, 2) + x) / x1
+        # 我的思路可实现
+        # x_hat = pow(x1, 2) - x
+        # if abs(x_hat) < 1e-7:
+        #     return x1
+        
+        # 网站思路
+        if abs(x1 - x0) < 1e-7:
+            return x1    
 
 
-print(str(mySqrt(9)))
+print(str(mySqrt(8)))
+print(str((mySqrt_newton(8))))
+print(3%6)
 
